@@ -1,0 +1,106 @@
+package task.one;
+
+public class Cat {
+	private int weight;
+	private int age;
+	private String color;
+	private String breed;
+	private String name;
+
+	public Cat() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Cat(int weight, int age, String color, String breed, String name) {
+		super();
+		this.weight = weight;
+		this.age = age;
+		this.color = color;
+		this.breed = breed;
+		this.name = name;
+	}
+
+	public int getWeight() {
+		return weight;
+	}
+
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public String getBreed() {
+		return breed;
+	}
+
+	public void setBreed(String breed) {
+		this.breed = breed;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void murr() {
+		System.out.println("Murr-Murr");
+	}
+
+	public void humanAge() {
+		int human = 0;
+		if (age == 1) {
+			System.out.println("Возраст вашей кошки в человеческих годах жизни = 15 лет");
+		} else if (age == 2) {
+			System.out.println("Возраст вашей кошки в человеческих годах жизни = 24 года");
+		} else {
+			human = (age - 2) * 4 + 24;
+			System.out.println("Возраст вашей кошки в человеческих годах жизни = " + human);
+		}
+	}
+
+	public void food() {
+		System.out.println("Obey me, feed me");
+	}
+
+	@Override
+	public String toString() {
+		return "Cat [weight=" + weight + ", age=" + age + ", color=" + color + ", breed=" + breed + ", name=" + name
+				+ "]";
+	}
+
+}
+package task.one;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Cat catOne = new Cat();
+		catOne.setWeight(15);
+		catOne.setAge(5);
+		catOne.humanAge();
+
+		Cat catTwo = new Cat(3, 7, "Black", "Scottish lop-eared", "Rocky");
+		System.out.println(catTwo);
+	}
+
+}
