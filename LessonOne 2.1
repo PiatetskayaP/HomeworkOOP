@@ -1,0 +1,75 @@
+package task.two;
+
+public class Triangle {
+	private double firstSize;
+	private double secondSize;
+	private double thirdSize;
+
+	public Triangle() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Triangle(double firstSize, double secondSize, double thirdSize) {
+		super();
+		this.firstSize = firstSize;
+		this.secondSize = secondSize;
+		this.thirdSize = thirdSize;
+	}
+
+	public double getFirstSize() {
+		return firstSize;
+	}
+
+	public void setFirstSize(double firstSize) {
+		this.firstSize = firstSize;
+	}
+
+	public double getSecondSize() {
+		return secondSize;
+	}
+
+	public void setSecondSize(double secondSize) {
+		this.secondSize = secondSize;
+	}
+
+	public double getThirdSize() {
+		return thirdSize;
+	}
+
+	public void setThirdSize(double thirdSize) {
+		this.thirdSize = thirdSize;
+	}
+
+	public void area() {
+		double p = (firstSize + secondSize + thirdSize) / 2;
+		if ((firstSize + secondSize) > thirdSize && (firstSize + thirdSize) > secondSize
+				&& (secondSize + thirdSize) > firstSize) {
+			double area = Math.sqrt(p * (p - firstSize) * (p - secondSize) * (p - thirdSize));
+			String text = String.format("%." + 3 + "f", area);
+			System.out.println("Площадь треугольника = " + text);
+		} else {
+			System.out.println("Такого треугольника не существует");
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Triangle [firstSize=" + firstSize + ", secondSize=" + secondSize + ", thirdSize=" + thirdSize + "]";
+	}
+
+}
+package task.two;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Triangle triangleOne = new Triangle (3.4, 5.7, 9.2);
+		triangleOne.area();
+		
+		Triangle triangleTwo = new Triangle (8, 4, 9);
+		triangleTwo.area();
+	}
+
+}
