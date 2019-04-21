@@ -3,7 +3,7 @@ package com.bigmir.piatetskaya.polina;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Group {
+public class Group implements Voencom {
 	private Student[] gr = new Student[10];
 
 	public Group() {
@@ -44,7 +44,13 @@ public class Group {
 				stOne.setRecordBookNumber(sc.nextInt());
 				System.out.println("Введите возраст нового студента");
 				stOne.setAge(sc.nextInt());
-
+				System.out
+						.println("Введите м, если пол нового студента мужской, и ж, если пол нового студента женский");
+				if (sc.nextLine().equalsIgnoreCase("ж")) {
+					stOne.setSex(false);
+				} else if (sc.nextLine().equalsIgnoreCase("м")) {
+					stOne.setSex(true);
+				}
 				for (int j = 0; j < gr.length; j++) {
 					if (gr[j] == null) {
 						gr[j] = stOne;
@@ -52,29 +58,55 @@ public class Group {
 					}
 				}
 			}
-		} catch (NoFreeSpaceException e) {
+		} catch (
+
+		NoFreeSpaceException e) {
 			System.out.println(e.getUserMessage());
 		}
 	}
 
 	public void deleteStudent() {
 		Scanner scTwo = new Scanner(System.in);
-		System.out.println("Введите номер студента, которого хотите удалить");
-		int num = scTwo.nextInt();
-		gr[num] = null;
+		System.out.println("Введите номер зачётной книжки студента, которого хотите удалить");
+		for (int i = 0; i < gr.length; i++) {
+			if ((gr[i] != null) && (gr[i].getRecordBookNumber() == scTwo.nextInt())) {
+				gr[i] = null;
+			}
+		}
 	}
 
-	public String findStudent() {
-		String answer = "Такого студента в списке нет";
+	public Student findStudent() {
 		Scanner scOne = new Scanner(System.in);
-		System.out.println("Введите фамилию студента");
+		System.out.println("Введите фамилию студента, которого хотите найти");
 		String surn = scOne.nextLine();
 		for (int i = 0; i < gr.length; i++) {
 			if ((gr[i] != null) && (gr[i].getSurname().equalsIgnoreCase(surn))) {
-				answer = "Номер студента в списке " + i;
+				return gr[i];
 			}
 		}
-		return answer;
+		return null;
+	}
+
+	public void sort() {
+		Arrays.sort(gr, new Student());
+	}
+
+	@Override
+	public Student[] recruiters() {
+		Student[] recr = new Student[0];
+		for (int i = 0; i < gr.length; i++) {
+			if ((gr[i] != null) && (gr[i].getAge() > 18) && (gr[i].isSex() == true)) {
+				recr = changeSize(recr, gr[i]);
+			}
+		}
+		return recr;
+	}
+
+	public Student[] changeSize(Student[] group, Student a) {
+		Student[] newGroup = new Student[group.length + 1];
+		newGroup = Arrays.copyOf(group, (group.length + 1));
+		newGroup[newGroup.length - 1] = a;
+		return newGroup;
 	}
 
 	@Override

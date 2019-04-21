@@ -7,8 +7,8 @@ public class Student extends Human {
 		super();
 	}
 
-	public Student(String name, String surname, int age, int recordBookNumber) {
-		super(name, surname, age);
+	public Student(String name, String surname, int age, boolean sex, int recordBookNumber) {
+		super(name, surname, age, sex);
 		this.recordBookNumber = recordBookNumber;
 	}
 
