@@ -23,7 +23,7 @@ public class Group implements Voencom {
 		this.gr = gr;
 	}
 
-	public void addStudent() {
+	public boolean checkSpace() {
 		boolean free = false;
 		try {
 			for (int i = 0; i < gr.length; i++) {
@@ -33,52 +33,54 @@ public class Group implements Voencom {
 			}
 			if (free == false) {
 				throw new NoFreeSpaceException("¬ группе уже нет свободных мест");
-			} else {
-				Scanner sc = new Scanner(System.in);
-				Student stOne = new Student();
-				System.out.println("¬ведите им€ нового студента");
-				stOne.setName(sc.nextLine());
-				System.out.println("¬ведите фамилию нового студента");
-				stOne.setSurname(sc.nextLine());
-				System.out.println("¬ведите номер зачЄтки нового студента");
-				stOne.setRecordBookNumber(sc.nextInt());
-				System.out.println("¬ведите возраст нового студента");
-				stOne.setAge(sc.nextInt());
-				System.out
-						.println("¬ведите м, если пол нового студента мужской, и ж, если пол нового студента женский");
-				if (sc.nextLine().equalsIgnoreCase("ж")) {
-					stOne.setSex(false);
-				} else if (sc.nextLine().equalsIgnoreCase("м")) {
-					stOne.setSex(true);
-				}
-				for (int j = 0; j < gr.length; j++) {
-					if (gr[j] == null) {
-						gr[j] = stOne;
-						break;
-					}
+			}
+		} catch (NoFreeSpaceException e) {
+			System.out.println(e.getUserMessage());
+		}
+		return free;
+	}
+
+	public Student studentScanner() {
+		Scanner sc = new Scanner(System.in);
+		Student stOne = new Student();
+		System.out.println("¬ведите им€ нового студента");
+		stOne.setName(sc.nextLine());
+		System.out.println("¬ведите фамилию нового студента");
+		stOne.setSurname(sc.nextLine());
+		System.out.println("¬ведите номер зачЄтки нового студента");
+		stOne.setRecordBookNumber(sc.nextInt());
+		System.out.println("¬ведите возраст нового студента");
+		stOne.setAge(sc.nextInt());
+		System.out.println("¬ведите м, если пол нового студента мужской, и ж, если пол нового студента женский");
+		if (sc.nextLine().equalsIgnoreCase("ж")) {
+			stOne.setSex(false);
+		} else if (sc.nextLine().equalsIgnoreCase("м")) {
+			stOne.setSex(true);
+		}
+		return stOne;
+	}
+
+	public void addStudent() {
+		boolean free = checkSpace();
+		if (free == true) {
+			for (int j = 0; j < gr.length; j++) {
+				if (gr[j] == null) {
+					gr[j] = studentScanner();
+					break;
 				}
 			}
-		} catch (
-
-		NoFreeSpaceException e) {
-			System.out.println(e.getUserMessage());
 		}
 	}
 
-	public void deleteStudent() {
-		Scanner scTwo = new Scanner(System.in);
-		System.out.println("¬ведите номер зачЄтной книжки студента, которого хотите удалить");
+	public void deleteStudent(int numb) {
 		for (int i = 0; i < gr.length; i++) {
-			if ((gr[i] != null) && (gr[i].getRecordBookNumber() == scTwo.nextInt())) {
+			if ((gr[i] != null) && (gr[i].getRecordBookNumber() == numb)) {
 				gr[i] = null;
 			}
 		}
 	}
 
-	public Student findStudent() {
-		Scanner scOne = new Scanner(System.in);
-		System.out.println("¬ведите фамилию студента, которого хотите найти");
-		String surn = scOne.nextLine();
+	public Student findStudent(String surn) {
 		for (int i = 0; i < gr.length; i++) {
 			if ((gr[i] != null) && (gr[i].getSurname().equalsIgnoreCase(surn))) {
 				return gr[i];
