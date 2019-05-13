@@ -1,6 +1,7 @@
 package com.bigmir.piatetskaya.polina;
 
 public class NoFreeSpaceException extends Exception {
+	private static final long serialVersionUID = 1L;
 	private String userMessage;
 
 	public NoFreeSpaceException() {

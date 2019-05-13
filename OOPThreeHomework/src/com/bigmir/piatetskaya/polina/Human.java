@@ -1,8 +1,10 @@
 package com.bigmir.piatetskaya.polina;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class Human implements Comparator {
+public class Human implements Comparator, Serializable {
+	private static final long serialVersionUID = 1L;
 	private String Name;
 	private String Surname;
 	private int age;

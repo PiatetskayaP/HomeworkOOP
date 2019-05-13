@@ -1,7 +1,5 @@
 package com.bigmir.piatetskaya.polina;
 
-import java.util.Arrays;
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -10,15 +8,16 @@ public class Main {
 		Group groupOne = new Group();
 		groupOne.addStudent();
 		groupOne.addStudent();
-		groupOne.addStudent();
-		groupOne.addStudent();
 		System.out.println(groupOne.toString());
 
 		groupOne.sort();
 
-		System.out.println(groupOne.toString());
+		BaseGroup bg = new BaseGroup();
+		bg.saveGroup(groupOne, "Group");
+		Group gr = new Group();
+		gr = bg.readGroup("Group");
 
-		System.out.println(Arrays.toString(groupOne.recruiters()));
+		System.out.println(gr.toString());
 	}
 
 }

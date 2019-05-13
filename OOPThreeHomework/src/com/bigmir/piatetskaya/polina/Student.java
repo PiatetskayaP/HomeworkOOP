@@ -1,6 +1,7 @@
 package com.bigmir.piatetskaya.polina;
 
 public class Student extends Human {
+	private static final long serialVersionUID = 1L;
 	private int recordBookNumber;
 
 	public Student() {

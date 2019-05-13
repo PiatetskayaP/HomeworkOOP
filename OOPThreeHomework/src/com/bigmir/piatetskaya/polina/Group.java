@@ -1,9 +1,11 @@
 package com.bigmir.piatetskaya.polina;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Group implements Voencom {
+public class Group implements Voencom, Serializable {
+	private static final long serialVersionUID = 1L;
 	private Student[] gr = new Student[10];
 
 	public Group() {
